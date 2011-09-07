@@ -11,6 +11,10 @@ module Surveygizmo
         get('survey', formatted_filters(filters))
       end
       
+      def polls
+        surveys.select { |s| s._subtype == 'Poll' }
+      end
+      
       # Returns survey details for a given id
       # @param id [Integer, String] A SurveyGizmo AccountUser ID
       # @param metaonly [Boolean] Return only meta data

@@ -17,7 +17,7 @@ module Surveygizmo
         options[:url] = temp_api_endpoint ? temp_api_endpoint : api_endpoint
 
         Faraday.new(options) do |builder|
-          # builder.use Faraday::Request::UrlEncoded
+          builder.use Faraday::Request::UrlEncoded
           builder.use Faraday::Response::Mashify
           builder.use Faraday::Response::ParseJson
           builder.adapter(:net_http)

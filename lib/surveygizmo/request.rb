@@ -33,9 +33,8 @@ module Surveygizmo
             request.path = path
             request.body = options unless options.empty?
           end
-          puts request.inspect
         end
-        response
+        response.body.data
       end
 
   end
