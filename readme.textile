@@ -8,7 +8,7 @@ h2. Installation
 
 h2. Documentation
 
-http://rdoc.info/gems/surveygizmo
+http://rdoc.info/github/ample/surveygizmo
 
 h2. Usage
 

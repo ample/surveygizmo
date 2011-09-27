@@ -11,6 +11,7 @@ module Surveygizmo
         get('survey', formatted_filters(filters))
       end
       
+      # Temporary, until SG implements filtering by subtype
       def polls
         surveys.select { |s| s._subtype == 'Poll' }
       end

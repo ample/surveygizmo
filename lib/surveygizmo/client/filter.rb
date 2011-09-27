@@ -6,6 +6,7 @@ module Surveygizmo
       
       # Format filters for the request querystring
       # TODO: Not yet recursive
+      # @param filters [Hash] Filter(s) used to refine search
       def formatted_filters(filters = {})
         Hash[*filters.map{|key,value| ["filter[#{key}]", value]}.flatten]
       end
