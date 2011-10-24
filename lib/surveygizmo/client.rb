@@ -11,6 +11,8 @@ module Surveygizmo
     require 'surveygizmo/client/account_user'
     require 'surveygizmo/client/filter'
     require 'surveygizmo/client/survey'
+    require 'surveygizmo/client/survey_campaign'
+    require 'surveygizmo/client/survey_response'
 
     alias :api_endpoint :endpoint
 
@@ -18,6 +20,8 @@ module Surveygizmo
     include Surveygizmo::Client::AccountUser
     include Surveygizmo::Client::Filter
     include Surveygizmo::Client::Survey
+    include Surveygizmo::Client::SurveyCampaign
+    include Surveygizmo::Client::SurveyResponse
 
   end
 end
