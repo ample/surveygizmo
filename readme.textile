@@ -20,6 +20,50 @@ Surveygizmo.configure do |config|
 end
 </code>
 
+h2. To Do List
+
+This gem is very young, and not all endpoints have been implemented. Here's a brief overview of the progress so far (italics denotes lack of implementation):
+
+* Account
+** Show
+* Account User
+** Index
+** Show
+** Create
+** Update
+** Delete
+* Contact
+** Index
+** Show
+** _Create_
+** _Update_
+** _Delete_
+* Survey
+** Index
+** Show
+** _Create_
+** _Update_
+** _Delete_
+* Survey Campaign
+** Index
+** Show
+** _Create_
+** _Update_
+** _Delete_
+* Survey Response
+** Index
+** Show
+** _Create_
+** _Update_
+** _Delete_
+* _Survey Option_
+* _Survey Question_
+* _Survey Page_
+* _Survey Statistics_
+* _Email Message_
+
+Also, there aren't any tests yet. This is high on the priority list and should be coming soon.
+
 h2. Thanks
 
 This gem is heavily inspired by the Twitter gem and John Nunemaker's hard work.
