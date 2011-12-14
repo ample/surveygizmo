@@ -6,19 +6,21 @@ h2. Installation
 
 @gem install surveygizmo@
 
-h2. Documentation
-
-http://rdoc.info/github/ample/surveygizmo
-
 h2. Usage
 
-<code>
-# Configure your Surveygizmo client
+bc. # Configure your Surveygizmo client
 Surveygizmo.configure do |config|
   config.username = YOUR_USERNAME
   config.password = YOUR_PASSWORD
 end
-</code>
+
+bc. # Return a list of all Surveys
+Surveygizmo.surveys
+
+bc. # Return a specific Survey
+Surveygizmo.survey(id)
+
+See the "Documentation":http://rdoc.info/github/ample/surveygizmo for the full list
 
 h2. To Do List
 
