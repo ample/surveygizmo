@@ -9,6 +9,7 @@ module Surveygizmo
     # Client-namespaced.
     require 'surveygizmo/client/account'
     require 'surveygizmo/client/account_user'
+    require 'surveygizmo/client/contact'
     require 'surveygizmo/client/filter'
     require 'surveygizmo/client/survey'
     require 'surveygizmo/client/survey_campaign'
@@ -18,6 +19,7 @@ module Surveygizmo
 
     include Surveygizmo::Client::Account
     include Surveygizmo::Client::AccountUser
+    include Surveygizmo::Client::Contact
     include Surveygizmo::Client::Filter
     include Surveygizmo::Client::Survey
     include Surveygizmo::Client::SurveyCampaign
