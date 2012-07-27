@@ -8,7 +8,7 @@ module Surveygizmo
       # @param survey_id [Integer, String] Specify the survey
       # @param survey_campaign_id [Integer, String] Specify the campaign
       def contacts(survey_id, survey_campaign_id)
-        get("survey/#{survey_id}/surveycampaign")
+        get("survey/#{survey_id}/surveycampaign/#{survey_campaign_id}/contact")
       end
       
       # Returns contact details for a given id
@@ -16,7 +16,7 @@ module Surveygizmo
       # @param survey_campaign_id [Integer, String] Specify the campaign
       # @param id [Integer, String] Specify the user
       def contact(survey_id, survey_campaign_id, id)
-        get("survey/#{survey_id}/surveycampaign/#{id}")
+        get("survey/#{survey_id}/surveycampaign/#{survey_campaign_id}/contact/#{id}")
       end
       
       # TODO: Create, Update, Delete
