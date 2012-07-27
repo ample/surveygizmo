@@ -6,9 +6,9 @@ module Surveygizmo
     module Survey
       
       # List all surveys, optionally filtered
-      # @param filters [Hash] Filter(s) used to refine search
-      def surveys(filters = {})
-        get('survey', formatted_filters(filters))
+      # @param options [Hash] Option(s) used to refine search
+      def surveys(options = {})
+        get('survey', options)
       end
       
       # Temporary, until SG implements filtering by subtype
