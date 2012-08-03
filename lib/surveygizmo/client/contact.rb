@@ -7,8 +7,8 @@ module Surveygizmo
       # List all contacts
       # @param survey_id [Integer, String] Specify the survey
       # @param survey_campaign_id [Integer, String] Specify the campaign
-      def contacts(survey_id, survey_campaign_id)
-        get("survey/#{survey_id}/surveycampaign/#{survey_campaign_id}/contact")
+      def contacts(survey_id, survey_campaign_id, options = {})
+        get("survey/#{survey_id}/surveycampaign/#{survey_campaign_id}/contact", options)
       end
       
       # Returns contact details for a given id
