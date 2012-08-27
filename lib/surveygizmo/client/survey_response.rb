@@ -6,8 +6,8 @@ module Surveygizmo
       
       # List all survey responses for a given survey
       # @param survey_id [Integer, String] Specify the survey to the responses to get
-      def survey_responses(survey_id)
-        get("survey/#{survey_id}/surveyresponse")
+      def survey_responses(survey_id, options = {})
+        get("survey/#{survey_id}/surveyresponse", options)
       end
       
       # Returns survey response details for a given id
