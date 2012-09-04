@@ -7,12 +7,12 @@ describe Surveygizmo::API do
 
   describe "#account" do
     before do
-     stub_get("/v1/account").
+     stub_get("/v2/account").
        to_return(:body => fixture("account.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
     it "requests the correct resource" do
       @client.account
-      a_get("/v1/account").
+      a_get("/v2/account").
         should have_been_made
     end
   end

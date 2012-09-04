@@ -53,13 +53,13 @@ describe Surveygizmo::Client do
     end
     before do
      authorization = subject.send(:auth_query_hash)
-     stub_get("/v1/account").
+     stub_get("/v2/account").
        with(:query => authorization).
        to_return(:body => fixture("account.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
     it "includes authorization in request query hash" do
       subject.account
-      a_get("/v1/account").
+      a_get("/v2/account").
         with(:query => {:'user:md5' => "steven@somewhere.org:39f8d5313141b1f2bade311ba571537e"}).
         should have_been_made
     end
