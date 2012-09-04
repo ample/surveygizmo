@@ -8,6 +8,27 @@ describe Surveygizmo::Client do
     )
   end
 
+  context "with module configuration" do
+    before do
+      Surveygizmo.configure do |config|
+        Surveygizmo::Configurable.keys.each do |key|
+          config.send("#{key}=", key)
+        end
+      end
+    end
+
+    after do
+      Surveygizmo.reset
+    end
+
+    it "inherits the module configuration" do
+      client = Surveygizmo::Client.new
+      Surveygizmo::Configurable.keys.each do |key|
+        client.instance_variable_get(:"@#{key}").should eq key
+      end
+    end
+  end
+
   describe "#credentials?" do
     it "returns true if all credentials are present" do
       client = Surveygizmo::Client.new(:username => "steven@somewhere.org", :password => "keyboardcat") 
