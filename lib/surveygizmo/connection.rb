@@ -10,9 +10,13 @@ module Surveygizmo
       def connection(temp_api_endpoint=nil)
         options = {
           :headers => { 'Accept' => 'application/json', 'User-Agent' => user_agent },
-          :ssl => { :verify => false },
-          :params => { :'user:md5' => "#{username}:#{Digest::MD5.hexdigest(password)}" }
+          :ssl => { :verify => false }
         }
+
+        if credentials?
+          authentication = auth_query_hash
+          options[:params] = authentication
+        end
 
         options[:url] = temp_api_endpoint ? temp_api_endpoint : api_endpoint
 
@@ -23,6 +27,9 @@ module Surveygizmo
           builder.adapter(:net_http)
         end
       end
-    
+
+      def auth_query_hash
+        { :'user:md5' => "#{username}:#{Digest::MD5.hexdigest(password)}" }
+      end
   end
 end

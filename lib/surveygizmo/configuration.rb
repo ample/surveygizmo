@@ -18,7 +18,7 @@ module Surveygizmo
     DEFAULT_PASSWORD = nil
     
     # The endpoint that will be used to connect if none is set
-    DEFAULT_ENDPOINT = 'https://restapi.surveygizmo.com/v1/'.freeze
+    DEFAULT_ENDPOINT = 'https://restapi.surveygizmo.com/v2/'.freeze
 
     # The value sent in the 'User-Agent' header if none is set
     DEFAULT_USER_AGENT = "Surveygizmo Ruby Gem #{Surveygizmo::VERSION}".freeze

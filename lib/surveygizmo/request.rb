@@ -11,16 +11,6 @@ module Surveygizmo
       request(:post, path, options, temp_api_endpoint)
     end
 
-    # Perform an HTTP PUT request
-    def put(path, options={})
-      request(:put, path, options)
-    end
-
-    # Perform an HTTP DELETE request
-    def delete(path, options={})
-      request(:delete, path, options)
-    end
-
     private
 
       # Perform an HTTP request
