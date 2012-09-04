@@ -46,4 +46,22 @@ describe Surveygizmo::Client do
       authorization[:'user:md5'].should eq "steven@somewhere.org:39f8d5313141b1f2bade311ba571537e"
     end
   end
+
+  context "authenticating requests" do
+    subject do
+      Surveygizmo::Client.new(:username => "steven@somewhere.org", :password => "keyboardcat")
+    end
+    before do
+     authorization = subject.send(:auth_query_hash)
+     stub_get("/v1/account").
+       with(:query => authorization).
+       to_return(:body => fixture("account.json"), :headers => {:content_type => "application/json; charset=utf-8"})
+    end
+    it "includes authorization in request query hash" do
+      subject.account
+      a_get("/v1/account").
+        with(:query => {:'user:md5' => "steven@somewhere.org:39f8d5313141b1f2bade311ba571537e"}).
+        should have_been_made
+    end
+  end
 end
