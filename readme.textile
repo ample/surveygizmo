@@ -59,12 +59,10 @@ This gem is very young, and not all endpoints have been implemented. Here's a br
 ** _Update_
 ** _Delete_
 * _Survey Option_
-* _Survey Question_
+* Survey Question
 * _Survey Page_
-* _Survey Statistics_
+* Survey Statistics
 * _Email Message_
-
-Also, there aren't any tests yet. This is high on the priority list and should be coming soon.
 
 h2. Thanks
 
@@ -72,4 +70,4 @@ This gem is heavily inspired by the Twitter gem and John Nunemaker's hard work.
 
 h2. Copyright
 
-Copyright (c) 2011 Bobby Uhlenbrock. See LICENSE for details.
+Copyright (c) 2011-2012 Bobby Uhlenbrock. See LICENSE for details.
