@@ -1,0 +1,33 @@
+{
+  "result_ok" : true,
+  "data" :
+    { "_subtype" : "instructions",
+      "_type" : "SurveyDecorative",
+      "description" : [  ],
+      "has_showhide_deps" : null,
+      "id" : 3,
+      "options" : [  ],
+      "properties" : { "break_after" : false,
+          "custom_css" : "",
+          "disabled" : false,
+          "hidden" : false,
+          "hide_after_response" : false,
+          "labels_right" : false,
+          "map_key" : "instructions",
+          "messages" : { "inputmask" : [  ],
+              "l_extreme_label" : [  ],
+              "left_label" : [  ],
+              "r_extreme_label" : [  ],
+              "right_label" : [  ]
+            },
+          "question_description_above" : false,
+          "required" : false,
+          "show_title" : false,
+          "soft-required" : false
+        },
+      "shortname" : null,
+      "sub_question_skus" : null,
+      "title" : { "English" : "Survey Title" },
+      "varname" : null
+    }
+}
