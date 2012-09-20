@@ -8,14 +8,19 @@ module Surveygizmo
       # TODO: Not yet recursive
       # @param filters [Hash] Filter(s) used to refine search
       def formatted_filters(*filters)
-        params = {}
-        filters.each_with_index do |filter, index|
-          filter.each do |key, value|
-            params["filter[#{key}][#{index}]"] = value
+        filters.flatten!
+        if filters.nil? || filters.empty? || filters.first.nil?
+          {}
+        else
+          params = {}
+          filters.flatten.each_with_index do |filter, index|
+            filter.each do |key, value|
+              params["filter[#{key}][#{index}]"] = value
+            end
           end
-        end
 
-        params
+          params
+        end
       end
     end
   end

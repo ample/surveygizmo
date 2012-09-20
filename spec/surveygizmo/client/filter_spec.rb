@@ -6,6 +6,21 @@ describe Surveygizmo::API do
   end
 
   describe "#formatted_filters" do
+    context "no filters" do
+      context "empty hash" do
+        let(:input) { Hash.new }
+        it "returns a empty hash" do
+          @client.formatted_filters(input).should == {}
+        end
+      end
+
+      context "nil" do
+        let(:input) { nil }
+        it "returns a empty hash" do
+          @client.formatted_filters(input).should == {}
+        end
+      end
+    end
     context "one filter" do
       it "format filters for the request querystring" do
         filters = @client.formatted_filters({

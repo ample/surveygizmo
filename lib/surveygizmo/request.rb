@@ -13,19 +13,23 @@ module Surveygizmo
 
     private
 
-      # Perform an HTTP request
-      def request(method, path, options, temp_api_endpoint=nil)
-        response = connection(temp_api_endpoint).send(method) do |request|
-          case method.to_sym
-          when :get, :delete
-            request.url(path, options)
-          when :post, :put
-            request.path = path
-            request.body = options unless options.empty?
-          end
+    # Perform an HTTP request
+    def request(method, path, options, temp_api_endpoint=nil)
+      response = connection(temp_api_endpoint).send(method) do |request|
+        convert_hash_filter_params!(options)
+        case method.to_sym
+        when :get, :delete
+          request.url(path, options)
+        when :post, :put
+          request.path = path
+          request.body = options unless options.empty?
         end
-        response.body.data
       end
+      response.body.data
+    end
 
+    def convert_hash_filter_params! options
+      options.merge! formatted_filters options.delete :filter
+    end
   end
 end
