@@ -1,7 +1,7 @@
 module Surveygizmo
   # Defines HTTP request methods
   module Request
-    
+
     # Perform an HTTP GET request
     def get(path, options={})
       request(:get, path, options)
@@ -25,7 +25,14 @@ module Surveygizmo
           request.body = options unless options.empty?
         end
       end
-      Response.new(response)
+
+      response = Response.new(response)
+
+      if response.failed?
+        raise Error.new(response.error_code, response.error_message)
+      else
+        response
+      end
     end
 
     def convert_hash_filter_params! options

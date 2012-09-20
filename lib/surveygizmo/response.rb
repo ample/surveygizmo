@@ -12,8 +12,16 @@ module Surveygizmo
       @data.send(name, *arguments, &block)
     end
 
+    def error_code
+      @response.body.code.to_i
+    end
+
+    def error_message
+      @response.body.message
+    end
+
     # Build meta data access methods.
-    ["result_ok", "total_count", "page", "total_pages", "results_per_page"].each do |field|
+    ["total_count", "page", "total_pages", "results_per_page"].each do |field|
       class_eval <<-RUBY
         def #{field}
           @response.body.#{field}.to_i
@@ -21,7 +29,13 @@ module Surveygizmo
       RUBY
     end
 
-    alias_method :result_ok?, :result_ok
+    def success?
+      @reponse.body.result_ok
+    end
+
+    def failed?
+      !@response.body.result_ok
+    end
 
     def == other
       (self.data == other.data) && (self.result == other.result)
