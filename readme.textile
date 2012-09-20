@@ -34,6 +34,13 @@ You can add multiple filters by passing an array of hashes.
 bc. # Show responses made in January 2012
 Surveygizmo.survey_responses(survey_id, filter: [{ field: "datesubmitted", operator, ">=", value: "2012-01-01"}, {field "datesubmitted", operator: "<=", value: "2012-01-31"])
 
+h2. Accessing meta data of the requests
+
+You can access the <code>result_ok?</code>, <code>total_count</code>, <code>page</code>, <code>total_pages</code> and <code>results_per_page</code> metadata. 
+
+bc. # Count the survey responses, but don't fetch them.
+Surveygizmo.survey_questions(survey_id, resultsperpage: 0).total_count 
+
 h2. To Do List
 
 This gem is very young, and not all endpoints have been implemented. Here's a brief overview of the progress so far (italics denotes lack of implementation):
