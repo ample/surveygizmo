@@ -13,12 +13,10 @@ module Surveygizmo
     end
 
     # Build meta data access methods.
-    ["result_ok", "total_count", "page", "total_pages", "results_per_page"].each do |field|
-      class_eval <<-RUBY
-        def #{field}
-          @response.body.#{field}.to_i
-        end
-      RUBY
+    [:result_ok, :total_count, :page, :total_pages, :results_per_page].each do |field|
+      define_method field do
+        @response.body.send(field).to_i
+      end
     end
 
     alias_method :result_ok?, :result_ok
