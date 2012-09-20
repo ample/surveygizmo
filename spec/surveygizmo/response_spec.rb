@@ -22,7 +22,7 @@ describe Surveygizmo::Response do
 
 
   context "#data" do
-    it "is equal to the respons object" do
+    it "is equal to the response object" do
       response.data.to_a == response.to_a
     end
   end
@@ -50,4 +50,11 @@ describe Surveygizmo::Response do
       response.results_per_page.should == 21
     end
   end
+  
+  context "#success?" do
+    it "indicates the status of the response" do
+      response.success?.should == true
+    end
+  end
+  
 end

@@ -28,14 +28,14 @@ module Surveygizmo
     end
 
     def success?
-      @reponse.body.result_ok
+      @response.body.result_ok
     end
 
     def failed?
-      !@response.body.result_ok
+      !success?
     end
 
-    def == other
+    def ==(other)
       (self.data == other.data) && (self.result == other.result)
     end
   end

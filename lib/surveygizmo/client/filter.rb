@@ -12,16 +12,14 @@ module Surveygizmo
         if filters.nil? || filters.empty? || filters.first.nil?
           {}
         else
-          params = {}
-          filters.flatten.each_with_index do |filter, index|
-            filter.each do |key, value|
-              params["filter[#{key}][#{index}]"] = value
+          {}.tap do |params|
+            filters.each_with_index do |filter, index|
+              filter.each { |key, value| params["filter[#{key}][#{index}]"] = value }
             end
           end
-
-          params
         end
       end
+      
     end
   end
 end
