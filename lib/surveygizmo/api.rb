@@ -1,6 +1,8 @@
 require 'surveygizmo/configuration'
 require 'surveygizmo/connection'
 require 'surveygizmo/request'
+require 'surveygizmo/response'
+require 'surveygizmo/error'
 
 module Surveygizmo
   # @private
