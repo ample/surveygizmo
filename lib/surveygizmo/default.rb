@@ -1,10 +1,12 @@
 require 'surveygizmo/configurable'
 require 'faraday_middleware'
+require 'surveygizmo/identity_map'
 
 module Surveygizmo
   module Default
     ENDPOINT   = 'https://restapi.surveygizmo.com/v2/' unless defined? ENDPOINT
     USER_AGENT = "Surveygizmo Ruby Gem #{Surveygizmo::VERSION}" unless defined? USER_AGENT
+    IDENTITY_MAP = Surveygizmo::IdentityMap unless defined? IDENTITY_MAP
     CONNECTION_OPTIONS = {
       :headers => { 
         :accept => 'application/json', 
@@ -23,7 +25,7 @@ module Surveygizmo
         builder.adapter(:net_http)
       end
     )
-
+    
     class << self
       def options
         Hash[Surveygizmo::Configurable.keys.map{|key| [key, send(key)]}]
@@ -51,6 +53,11 @@ module Surveygizmo
 
       def middleware
         MIDDLEWARE
+      end
+
+      # @return [Surveygizmo::IdentityMap]
+      def identity_map
+        IDENTITY_MAP
       end
     end
     
