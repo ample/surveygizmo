@@ -20,6 +20,7 @@ module Surveygizmo
         send("#{key}=", options[key])
       end
     end
-    
+
+    alias :api_endpoint :endpoint    
   end
 end
