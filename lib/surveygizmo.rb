@@ -1,5 +1,6 @@
 require 'surveygizmo/version'
 require 'surveygizmo/client'
+require 'surveygizmo/base'
 require 'surveygizmo/configurable'
 
 module Surveygizmo
