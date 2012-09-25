@@ -1,3 +1,5 @@
+require 'surveygizmo/account'
+
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo account
@@ -5,8 +7,8 @@ module Surveygizmo
     module Account
       
       # Get details of authorized account
-      def account
-        get('account')
+      def account(options={})
+        object_from_response(Surveygizmo::Account, :get, "account", options)
       end
       
     end
