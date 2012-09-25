@@ -1,5 +1,5 @@
 module Surveygizmo
-  class Response
+  module Response
     attr_reader :response
     attr_reader :data
 

@@ -35,7 +35,7 @@ module Surveygizmo
     # @param options [Hash]
     # @return [Array]
     def collection_from_response(klass, request_method, url, options={})
-      collection_from_array(klass, send(request_method.to_sym, url, options).data)
+      collection_from_array(klass, send(request_method.to_sym, url, options).body[:data])
     end
 
     private
