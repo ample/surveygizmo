@@ -5,7 +5,6 @@ module Surveygizmo
     ENDPOINT   = 'https://restapi.surveygizmo.com/v2/'
     USER_AGENT = "Surveygizmo Ruby Gem #{Surveygizmo::VERSION}"
 
-
     class << self
       def options
         Hash[Surveygizmo::Configurable.keys.map{|key| [key, send(key)]}]
@@ -27,5 +26,6 @@ module Surveygizmo
         USER_AGENT
       end
     end
+    
   end
 end
