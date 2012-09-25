@@ -24,8 +24,7 @@ module Surveygizmo
     # @param options [Hash]
     # @return [Object]
     def object_from_response(klass, request_method, url, options={})
-      response = send(request_method.to_sym, url, options)
-      klass.from_response(response)
+      klass.from_response(send(request_method.to_sym, url, options))
     end
 
     # @param klass [Class]
