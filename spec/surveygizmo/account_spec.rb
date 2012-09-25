@@ -12,6 +12,17 @@ describe Surveygizmo::Account do
     end
   end
 
+  describe "#date_created" do
+    it "returns a Time when datecreated is set" do
+      account = Surveygizmo::Account.new(:id => 1825786345, :datecreated => "Mon Jul 16 12:59:01 +0000 2007")
+      account.date_created.should be_a Time
+    end
+    it "returns nil when datecreated is not set" do
+      account = Surveygizmo::Account.new(:id => 1825786345)
+      account.date_created.should be_nil
+    end
+  end
+
   describe "#created_at" do
     it "returns a Time when datecreated is set" do
       account = Surveygizmo::Account.new(:id => 1825786345, :datecreated => "Mon Jul 16 12:59:01 +0000 2007")

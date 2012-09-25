@@ -11,6 +11,7 @@ module Surveygizmo
     end
 
     alias :created_at :datecreated
+    alias :date_created :datecreated
 
   end
 end
