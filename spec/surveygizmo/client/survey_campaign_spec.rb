@@ -27,10 +27,22 @@ describe Surveygizmo::API do
       a_get("/v2/survey/1018301/surveycampaign/673550").
         should have_been_made
     end
-    it "returns a survey campaign" do
-      survey_campaign = @client.survey_campaign(1018301, 673550)
-      survey_campaign.should be_a Surveygizmo::SurveyCampaign
-      survey_campaign.id.should eq 673550
+    context "SurveyCampaign Object" do
+      subject(:survey_campaign){ @client.survey_campaign(1018301, 673550) }
+      it{ survey_campaign.should be_a Surveygizmo::SurveyCampaign }
+      it{ survey_campaign.id.should eq 673550 }
+      it{ survey_campaign._type.should eq "SurveyCampaign" }
+      it{ survey_campaign._subtype.should eq "link" }
+      it{ survey_campaign.__subtype.should eq "standard" }
+      it{ survey_campaign.status.should eq "Active" }
+      it{ survey_campaign.name.should eq "Default Link" }
+      it{ survey_campaign.SSL.should eq "False" }
+      it{ survey_campaign.tokenvariables.should be_nil }
+      it{ survey_campaign.limit_responses.should be_nil }
+      it{ survey_campaign.close_message.should be_nil }
+      it{ survey_campaign.language.should eq "Auto" }
+      it{ survey_campaign.datecreated.should eq Time.parse("2012-09-03 23:39:26") }
+      it{ survey_campaign.datemodified.should eq Time.parse("2012-09-03 23:39:26") }
     end
   end
 end
