@@ -1,3 +1,4 @@
+require 'surveygizmo/api'
 require 'surveygizmo/configurable'
 
 module Surveygizmo
@@ -18,8 +19,6 @@ module Surveygizmo
     require 'surveygizmo/client/survey_response'
     require 'surveygizmo/client/survey_question'
     require 'surveygizmo/client/survey_statistic'
-
-    alias :api_endpoint :endpoint
 
     include Surveygizmo::Configurable
     include Surveygizmo::Client::Account

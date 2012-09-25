@@ -1,10 +1,11 @@
-require 'surveygizmo/api'
+require 'surveygizmo/version'
 require 'surveygizmo/client'
-require 'surveygizmo/configuration'
+require 'surveygizmo/configurable'
 
 module Surveygizmo
-  extend Configuration
   class << self
+    include Surveygizmo::Configurable
+
     # Alias for Surveygizmo::Client.new
     #
     # @return [Surveygizmo::Client]
@@ -24,3 +25,5 @@ module Surveygizmo
     
   end
 end
+
+Surveygizmo.setup
