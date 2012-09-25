@@ -43,7 +43,7 @@ module Surveygizmo
 
     # @return [Integer]
     def id
-      @attrs[:id]
+      @attrs[:id].to_i
     end
 
   end
