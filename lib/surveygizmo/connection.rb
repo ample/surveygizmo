@@ -9,7 +9,7 @@ module Surveygizmo
 
       def connection(temp_api_endpoint=nil)
         options = {
-          :headers => { 'Accept' => 'application/json', 'User-Agent' => user_agent },
+          :headers => { 'Accept' => 'application/json', 'User-Agent' => @user_agent },
           :ssl => { :verify => false }
         }
 
@@ -18,7 +18,7 @@ module Surveygizmo
           options[:params] = authentication
         end
 
-        options[:url] = temp_api_endpoint ? temp_api_endpoint : api_endpoint
+        options[:url] = temp_api_endpoint ? temp_api_endpoint : @endpoint
 
         Faraday.new(options) do |builder|
           builder.use Faraday::Request::UrlEncoded
@@ -29,7 +29,7 @@ module Surveygizmo
       end
 
       def auth_query_hash
-        { :'user:md5' => "#{username}:#{Digest::MD5.hexdigest(password)}" }
+        { :'user:md5' => "#{credentials[:username]}:#{Digest::MD5.hexdigest(credentials[:password])}" }
       end
   end
 end

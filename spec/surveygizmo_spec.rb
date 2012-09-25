@@ -2,7 +2,7 @@ require 'helper'
 
 describe Surveygizmo do 
   after do
-    Surveygizmo.reset
+    Surveygizmo.reset!
   end
 
   context "when delegating to a client" do

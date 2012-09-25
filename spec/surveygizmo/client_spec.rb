@@ -18,7 +18,7 @@ describe Surveygizmo::Client do
     end
 
     after do
-      Surveygizmo.reset
+      Surveygizmo.reset!
     end
 
     it "inherits the module configuration" do

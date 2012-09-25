@@ -1,3 +1,4 @@
+require 'surveygizmo/api'
 require 'surveygizmo/configurable'
 
 module Surveygizmo
