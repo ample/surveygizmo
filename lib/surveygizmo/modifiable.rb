@@ -11,6 +11,7 @@ module Surveygizmo
     end
 
     alias :updated_on :datemodified
+    alias :date_modified :datemodified
 
   end
 end
