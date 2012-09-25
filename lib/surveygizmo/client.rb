@@ -1,5 +1,4 @@
 require 'surveygizmo/api'
-require 'surveygizmo/configurable'
 
 module Surveygizmo
   # Wrapper for the Surveygizmo REST API
@@ -20,7 +19,6 @@ module Surveygizmo
     require 'surveygizmo/client/survey_question'
     require 'surveygizmo/client/survey_statistic'
 
-    include Surveygizmo::Configurable
     include Surveygizmo::Client::Account
     include Surveygizmo::Client::AccountUser
     include Surveygizmo::Client::Contact
