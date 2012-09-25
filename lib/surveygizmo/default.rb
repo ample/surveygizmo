@@ -2,8 +2,8 @@ require 'surveygizmo/configurable'
 
 module Surveygizmo
   module Default
-    ENDPOINT   = 'https://restapi.surveygizmo.com/v2/'
-    USER_AGENT = "Surveygizmo Ruby Gem #{Surveygizmo::VERSION}"
+    ENDPOINT   = 'https://restapi.surveygizmo.com/v2/' unless defined? ENDPOINT
+    USER_AGENT = "Surveygizmo Ruby Gem #{Surveygizmo::VERSION}" unless defined? USER_AGENT
 
     class << self
       def options
