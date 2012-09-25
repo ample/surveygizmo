@@ -13,9 +13,13 @@ module Surveygizmo
     } unless defined? CONNECTION_OPTIONS
     MIDDLEWARE = Faraday::Builder.new(
       &Proc.new do |builder|
+        # Convert request params to "www-form-urlencoded"
         builder.use Faraday::Request::UrlEncoded
+        # Converts parsed response bodies to a Hashie::Mash
         builder.use Faraday::Response::Mashify
+        # Parse JSON response bodies using MultiJson
         builder.use Faraday::Response::ParseJson
+        # Set Faraday's HTTP adapter
         builder.adapter(:net_http)
       end
     )
