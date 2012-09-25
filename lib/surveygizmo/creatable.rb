@@ -6,11 +6,11 @@ module Surveygizmo
     # Time when the object was created on Surveygizmo
     #
     # @return [Time]
-    def date_created
-      @date_created ||= Time.parse(@attrs[:date_created]) unless @attrs[:date_created].nil?
+    def datecreated
+      @datecreated ||= Time.parse(@attrs[:datecreated]) unless @attrs[:datecreated].nil?
     end
 
-    alias :created_at :date_created
+    alias :created_at :datecreated
 
   end
 end

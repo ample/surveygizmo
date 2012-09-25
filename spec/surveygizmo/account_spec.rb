@@ -1,20 +1,20 @@
 require 'helper'
 
 describe Surveygizmo::Account do
-  describe "#date_created" do
-    it "returns a Time when date_created is set" do
-      account = Surveygizmo::Account.new(:id => 1825786345, :date_created => "Mon Jul 16 12:59:01 +0000 2007")
-      account.date_created.should be_a Time
+  describe "#datecreated" do
+    it "returns a Time when datecreated is set" do
+      account = Surveygizmo::Account.new(:id => 1825786345, :datecreated => "Mon Jul 16 12:59:01 +0000 2007")
+      account.datecreated.should be_a Time
     end
-    it "returns nil when date_created is not set" do
+    it "returns nil when datecreated is not set" do
       account = Surveygizmo::Account.new(:id => 1825786345)
-      account.date_created.should be_nil
+      account.datecreated.should be_nil
     end
   end
 
   describe "#created_at" do
-    it "returns a Time when date_created is set" do
-      account = Surveygizmo::Account.new(:id => 1825786345, :date_created => "Mon Jul 16 12:59:01 +0000 2007")
+    it "returns a Time when datecreated is set" do
+      account = Surveygizmo::Account.new(:id => 1825786345, :datecreated => "Mon Jul 16 12:59:01 +0000 2007")
       account.created_at.should be_a Time
     end
     it "returns nil when date_created is not set" do
