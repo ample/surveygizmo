@@ -15,5 +15,10 @@ describe Surveygizmo::API do
       a_get("/v2/account").
         should have_been_made
     end
+    it "returns the account" do
+      account = @client.account
+      account.should be_a Surveygizmo::Account
+      account.id.should eq 57382
+    end
   end
 end
