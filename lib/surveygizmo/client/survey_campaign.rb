@@ -1,3 +1,5 @@
+require 'surveygizmo/survey_campaign'
+
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo survey campaign
@@ -13,8 +15,8 @@ module Surveygizmo
       # Returns survey campaign details for a given id
       # @param survey_id [Integer, String] Specify the survey to the campaigns to get
       # @param id [Integer, String] Specify the campaign to get
-      def survey_campaign(survey_id, id)
-        get("survey/#{survey_id}/surveycampaign/#{id}")
+      def survey_campaign(survey_id, id, options={})
+        object_from_response(Surveygizmo::SurveyCampaign, :get, "survey/#{survey_id}/surveycampaign/#{id}", options)
       end
       
       # TODO: Create, Update, Delete
