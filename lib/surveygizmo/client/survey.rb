@@ -11,9 +11,12 @@ module Surveygizmo
         get('survey', options)
       end
       
-      # Temporary, until SG implements filtering by subtype
-      def polls
-        surveys.select { |s| s._subtype == 'Poll' }
+      # List all polls, optionally filtered
+      # @param options [Hash] Option(s) used to refine search
+      def polls(options = {})
+        options[:filter] ||= []
+        options[:filter] <<  { :field => 'subtype', :operator => '=', :value => 'Poll' }
+        surveys(options)
       end
       
       # Returns survey details for a given id

@@ -19,13 +19,16 @@ describe Surveygizmo::API do
 
   describe "#polls" do
     before do
-     stub_get("/v2/survey").
-       to_return(:body => fixture("surveys.json"), :headers => {:content_type => "application/json; charset=utf-8"})
+     stub_get("/v2/survey?filter%5Bfield%5D%5B0%5D=subtype&filter%5Boperator%5D%5B0%5D==&filter%5Bvalue%5D%5B0%5D=Poll").
+       to_return(:body => fixture("polls.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
     it "requests the correct resource" do
       @client.polls
-      a_get("/v2/survey").
+      a_get("/v2/survey?filter%5Bfield%5D%5B0%5D=subtype&filter%5Boperator%5D%5B0%5D==&filter%5Bvalue%5D%5B0%5D=Poll").
         should have_been_made
+    end
+    it "only returns surveys with a subtype of poll" do
+      @client.polls.each { |p| p._subtype.should == 'Poll' }
     end
   end
 
