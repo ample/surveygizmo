@@ -15,6 +15,12 @@ describe Surveygizmo::API do
       a_get("/v2/survey/1018301/surveycampaign").
         should have_been_made
     end
+    it "returns an Array of SurveyCampaign" do
+      survey_campaigns = @client.survey_campaigns(1018301)
+      survey_campaigns.should be_an Array
+      survey_campaigns.first.should be_a Surveygizmo::SurveyCampaign
+      survey_campaigns.first.id.should eq 673550
+    end
   end
 
   describe "#survey_campaign" do

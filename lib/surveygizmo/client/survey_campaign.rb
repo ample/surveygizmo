@@ -8,8 +8,8 @@ module Surveygizmo
       
       # List all survey campaigns for a given survey
       # @param survey_id [Integer, String] Specify the survey to the campaigns to get
-      def survey_campaigns(survey_id)
-        get("survey/#{survey_id}/surveycampaign")
+      def survey_campaigns(survey_id, options={})
+        collection_from_response(Surveygizmo::SurveyCampaign, :get, "survey/#{survey_id}/surveycampaign", options)
       end
       
       # Returns survey campaign details for a given id
