@@ -27,5 +27,10 @@ describe Surveygizmo::API do
       a_get("/v2/survey/1018301/surveycampaign/673550").
         should have_been_made
     end
+    it "returns a survey campaign" do
+      survey_campaign = @client.survey_campaign(1018301, 673550)
+      survey_campaign.should be_a Surveygizmo::SurveyCampaign
+      survey_campaign.id.should eq 673550
+    end
   end
 end
