@@ -15,19 +15,13 @@ module Surveygizmo
 
     # Perform an HTTP request
     def request(method, path, options, temp_api_endpoint=nil)
-      connection_options = {
-        :headers => { 'Accept' => 'application/json', 'User-Agent' => @user_agent },
-        :ssl => { :verify => false }
-      }
-
       if credentials?
         authentication = auth_query_hash
-        connection_options[:params] = authentication
+        connection.params.merge!(authentication)
       end
 
-      connection_options[:url] = temp_api_endpoint ? temp_api_endpoint : @endpoint
-
-      response = connection(connection_options).send(method) do |request|
+      connection.url_prefix = temp_api_endpoint || @endpoint
+      response = connection.send(method) do |request|
         convert_hash_filter_params!(options)
         case method.to_sym
         when :get, :delete
