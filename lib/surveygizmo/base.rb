@@ -56,7 +56,7 @@ module Surveygizmo
     # @param response [Hash]
     # @return [Surveygizmo::Base]
     def self.from_response(response={})
-      fetch_or_new(response[:body])
+      fetch_or_new(response.data)
     end
 
     # Retrieves an object from the identity map, or stores it in the
