@@ -1,4 +1,5 @@
 require 'surveygizmo/base'
+require 'surveygizmo/core_ext/string'
 require 'surveygizmo/error/identity_map_key_error'
 
 module Surveygizmo
@@ -43,8 +44,13 @@ module Surveygizmo
 
     # @return [Integer]
     def id
-      @attrs[:id].to_i
-    end
+      id = @attrs[:id]
 
+      if id.kind_of?(String) && id.is_integer?
+        id.to_i
+      else
+        id
+      end
+    end
   end
 end
