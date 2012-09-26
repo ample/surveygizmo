@@ -15,8 +15,8 @@ module Surveygizmo
       # Returns survey response details for a given id
       # @param survey_id [Integer, String] Specify the survey to the response to get
       # @param id [Integer, String] Specify the response to get
-      def survey_response(survey_id, id)
-        get("survey/#{survey_id}/surveyresponse/#{id}")
+      def survey_response(survey_id, id, options={})
+        object_from_response(Surveygizmo::SurveyResponse, :get, "survey/#{survey_id}/surveyresponse/#{id}", options)
       end
       
       # TODO: Create, Update, Delete
