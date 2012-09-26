@@ -29,6 +29,6 @@ describe Surveygizmo::Error do
   end
 
   it "has the correct message" do
-    expect { request }.to raise_error(Surveygizmo::Error) { |e| e.message.should == "Surveygizmo error! (103) Service currently unavailable" }
+    expect { request }.to raise_error(Surveygizmo::Error) { |e| e.message.should == "Service currently unavailable" }
   end
 end
