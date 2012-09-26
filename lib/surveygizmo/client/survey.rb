@@ -1,3 +1,5 @@
+require 'surveygizmo/survey'
+
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo survey
@@ -8,7 +10,7 @@ module Surveygizmo
       # List all surveys, optionally filtered
       # @param options [Hash] Option(s) used to refine search
       def surveys(options = {})
-        get('survey', options)
+        collection_from_response(Surveygizmo::Survey, :get, "survey", options)
       end
       
       # List all polls, optionally filtered
@@ -23,7 +25,7 @@ module Surveygizmo
       # @param id [Integer, String] A SurveyGizmo AccountUser ID
       # @param metaonly [Boolean] Return only meta data
       def survey(id, metaonly = false)
-        get("survey/#{id}", :metaonly => metaonly)
+        object_from_response(Surveygizmo::Survey, :get, "survey/#{id}", :metaonly => metaonly)
       end
       
       # TODO: Create, Update, Delete

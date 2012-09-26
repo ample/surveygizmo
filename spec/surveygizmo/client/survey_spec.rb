@@ -15,6 +15,11 @@ describe Surveygizmo::API do
       a_get("/v2/survey").
         should have_been_made
     end
+    it "returns an Array of Survey" do
+      surveys = @client.surveys
+      surveys.should be_an Array
+      surveys.first.should be_a Surveygizmo::Survey
+    end
   end
 
   describe "#polls" do
@@ -43,6 +48,10 @@ describe Surveygizmo::API do
       a_get("/v2/survey/1018301").
         with(:query => {:metaonly=>"false"}).
         should have_been_made
+    end
+    context "Survey Object" do
+      subject(:survey){ @client.survey(1018301) }
+      it{ survey.should be_a Surveygizmo::Survey }
     end
   end
 end
