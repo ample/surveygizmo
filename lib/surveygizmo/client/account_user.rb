@@ -1,3 +1,5 @@
+require 'surveygizmo/account_user'
+
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo account user (not to be confused with a {Contact})
