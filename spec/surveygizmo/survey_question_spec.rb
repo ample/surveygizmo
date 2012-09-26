@@ -18,12 +18,12 @@ describe Surveygizmo::SurveyQuestion do
     attribute = attribute.to_sym
     describe "##{attribute}" do
       it "returns a #{value.class} when #{attribute} is set" do
-        survey_campaign = Surveygizmo::SurveyQuestion.new(:id => 3, attribute => value)
-        survey_campaign.send(attribute).should eq value
+        survey_question = Surveygizmo::SurveyQuestion.new(:id => 3, attribute => value)
+        survey_question.send(attribute).should eq value
       end
       it "returns nil when #{attribute} is not set" do
-        survey_campaign = Surveygizmo::SurveyQuestion.new(:id => 3)
-        survey_campaign.send(attribute).should be_nil
+        survey_question = Surveygizmo::SurveyQuestion.new(:id => 3)
+        survey_question.send(attribute).should be_nil
       end
     end
   end

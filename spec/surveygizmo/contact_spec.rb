@@ -36,12 +36,12 @@ describe Surveygizmo::Contact do
     attribute = attribute.to_sym
     describe "##{attribute}" do
       it "returns a String when #{attribute} is set" do
-        survey_campaign = Surveygizmo::Contact.new(:id => 673550, attribute => value)
-        survey_campaign.send(attribute).should eq value
+        contact = Surveygizmo::Contact.new(:id => 673550, attribute => value)
+        contact.send(attribute).should eq value
       end
       it "returns nil when #{attribute} is not set" do
-        survey_campaign = Surveygizmo::Contact.new(:id => 673550)
-        survey_campaign.send(attribute).should be_nil
+        contact = Surveygizmo::Contact.new(:id => 673550)
+        contact.send(attribute).should be_nil
       end
     end
   end

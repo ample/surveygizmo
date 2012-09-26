@@ -10,12 +10,12 @@ describe Surveygizmo::SurveyStatistic do
     attribute = attribute.to_sym
     describe "##{attribute}" do
       it "returns a String when #{attribute} is set" do
-        survey_campaign = Surveygizmo::SurveyStatistic.new(:id => "[question(3)]", attribute => value)
-        survey_campaign.send(attribute).should eq value
+        survey_statistic = Surveygizmo::SurveyStatistic.new(:id => "[question(3)]", attribute => value)
+        survey_statistic.send(attribute).should eq value
       end
       it "returns nil when #{attribute} is not set" do
-        survey_campaign = Surveygizmo::SurveyStatistic.new(:id => "[question(3)]")
-        survey_campaign.send(attribute).should be_nil
+        survey_statistic = Surveygizmo::SurveyStatistic.new(:id => "[question(3)]")
+        survey_statistic.send(attribute).should be_nil
       end
     end
   end
