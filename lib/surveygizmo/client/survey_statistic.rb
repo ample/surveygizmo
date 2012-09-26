@@ -1,3 +1,5 @@
+require 'surveygizmo/survey_statistic'
+
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo survey statistic
