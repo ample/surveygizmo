@@ -1,7 +1,6 @@
 require 'surveygizmo/configurable'
 require 'surveygizmo/connection'
 require 'surveygizmo/request'
-require 'surveygizmo/response'
 require 'surveygizmo/error'
 require 'surveygizmo/collection'
 

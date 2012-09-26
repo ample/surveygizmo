@@ -27,5 +27,14 @@ describe Surveygizmo::API do
       a_get("/v2/survey/1018301/surveyresponse/1").
         should have_been_made
     end
+    context "SurveyResponse Object" do
+      subject(:survey_response){ @client.survey_response(1018301, 1) }
+      it{ survey_response.should be_a Surveygizmo::SurveyResponse }
+      it{ survey_response.id.should eq 1 }
+      it{ survey_response.contact_id.should eq "" }
+      it{ survey_response.status.should eq "Complete" }
+      it{ survey_response.is_test_data.should eq "1" }
+      it{ survey_response.date_submitted.should eq Time.parse("2012-09-03 23:47:47") }
+    end
   end
 end

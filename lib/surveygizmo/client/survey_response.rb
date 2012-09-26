@@ -1,3 +1,5 @@
+require 'surveygizmo/survey_response'
+
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo survey response
