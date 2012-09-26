@@ -2,15 +2,11 @@ require 'helper'
 
 describe Surveygizmo::Response do
   context "#data" do
-    it "is equal to the response object" do
-      response.data.to_a == response.to_a
-    end
+    it "is equal to the response object"
   end
   
   context "#success?" do
-    it "indicates the status of the response" do
-      response.success?.should == true
-    end
+    it "indicates the status of the response"
   end
   
 end
