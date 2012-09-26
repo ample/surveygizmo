@@ -20,6 +20,10 @@ describe Surveygizmo::API do
       survey_campaigns.should be_an Array
       survey_campaigns.first.should be_a Surveygizmo::SurveyCampaign
       survey_campaigns.first.id.should eq 673550
+      survey_campaigns.page.should eq 1
+      survey_campaigns.total_count.should eq 2
+      survey_campaigns.total_pages.should eq 1
+      survey_campaigns.results_per_page.should eq 50
     end
   end
 
