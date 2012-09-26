@@ -2,6 +2,6 @@
   "result_ok" : true,
   "data" : { "_subtype" : "instructions",
     "_type" : "SurveyStatistics",
-    "id" : "[question(3)]"
+    "id" : "[question(1)]"
   }
 }
