@@ -6,11 +6,13 @@ module Surveygizmo
       MESSAGE = "Server Error"
 
       def self.from_response(response={})
-        new(nil, response[:response_headers])
+        new(nil, nil, response[:response_headers])
       end
 
-      def initialize(message=nil, response_headers={})
-        super((message || self.class.const_get(:MESSAGE)), response_headers)
+      def initialize(code=nil, message=nil, response_headers={})
+        code ||= self.class.const_get(:ERROR_CODE)
+        message ||= self.class.const_get(:MESSAGE)
+        super(code, message, response_headers)
       end
 
     end
