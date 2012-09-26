@@ -26,30 +26,6 @@ describe Surveygizmo::Response do
       response.data.to_a == response.to_a
     end
   end
-
-  context "#total_count" do
-    it "returns the total number of results" do
-      response.total_count.should == 42
-    end
-  end
-
-  context "#page" do
-    it "returns the current page" do
-      response.page.should == 1
-    end
-  end
-
-  context "#total_pages" do
-    it "returns the total number of pages" do
-      response.total_pages.should == 2
-    end
-  end
-
-  context "#results_per_page" do
-    it "returns the number of results per page" do
-      response.results_per_page.should == 21
-    end
-  end
   
   context "#success?" do
     it "indicates the status of the response" do

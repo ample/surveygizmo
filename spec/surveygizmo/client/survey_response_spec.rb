@@ -15,6 +15,15 @@ describe Surveygizmo::API do
       a_get("/v2/survey/1018301/surveyresponse").
         should have_been_made
     end
+    context "SurveyResponse collection" do
+      subject(:survey_responses){ @client.survey_responses(1018301) }
+      it{ survey_responses.should be_an Array }
+      it{ survey_responses.first.should be_a Surveygizmo::SurveyResponse }
+      it{ survey_responses.total_count.should eq 42 }
+      it{ survey_responses.page.should eq 1 }
+      it{ survey_responses.total_pages.should eq 2 }
+      it{ survey_responses.results_per_page.should eq 21 }
+    end
   end
 
   describe "#survey_response" do
