@@ -24,6 +24,32 @@ describe Surveygizmo::API do
       it{ survey_responses.total_pages.should eq 2 }
       it{ survey_responses.results_per_page.should eq 21 }
     end
+    context "with an authenticated filter query" do
+      subject { Surveygizmo::Client.new(:username => "maarten@moretea.nl", :password => "keyboardcat") }
+      let(:survey_id) { 42 }
+      let(:response_url) { "/v2/survey/#{survey_id}/surveyresponse" }
+      let(:query) {
+        {
+          "user:md5" => "maarten@moretea.nl:39f8d5313141b1f2bade311ba571537e",
+          "filter[field][0]"    => "datesubmitted",
+          "filter[operator][0]" => ">=",
+          "filter[value][0]"    => "2012-01-01",
+        }
+      }
+
+      before do
+        stub_get(response_url).
+          with(:query => query).
+          to_return(:body => fixture("survey_responses.json"), :headers => {:content_type => "application/json; charset=utf-8"})
+      end
+
+      it "requests the correct resource" do
+        subject.survey_responses(survey_id, filter: { field: "datesubmitted", operator: ">=", value: "2012-01-01" })
+        a_get("/v2/survey/#{survey_id}/surveyresponse").
+          with(:query => query).
+          should have_been_made
+      end
+    end
   end
 
   describe "#survey_response" do
