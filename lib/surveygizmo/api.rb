@@ -35,17 +35,7 @@ module Surveygizmo
     # @param options [Hash]
     # @return [Array]
     def collection_from_response(klass, request_method, url, options={})
-      collection_from_array(klass, send(request_method.to_sym, url, options).body[:data])
-    end
-
-    private
-    # @param klass [Class]
-    # @param array [Array]
-    # @return [Array]
-    def collection_from_array(klass, array)
-      array.map do |element|
-        klass.fetch_or_new(element)
-      end
+      Surveygizmo::Collection.of(klass, send(request_method.to_sym, url, options).body)
     end
   end
 end
