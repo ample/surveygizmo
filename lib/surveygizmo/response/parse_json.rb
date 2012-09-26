@@ -6,16 +6,7 @@ module Surveygizmo
     class ParseJson < Faraday::Response::Middleware
 
       def parse(body)
-        case body
-        when /\A^\s*$\z/, nil
-          nil
-        when 'true'
-          true
-        when 'false'
-          false
-        else
-          MultiJson.load(body, :symbolize_keys => true)
-        end
+        MultiJson.load(body, :symbolize_keys => true)
       end
 
       def on_complete(env)
