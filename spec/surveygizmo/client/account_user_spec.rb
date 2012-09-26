@@ -15,6 +15,12 @@ describe Surveygizmo::API do
       a_get("/v2/accountuser").
         should have_been_made
     end
+    describe "AccountUser Collection" do
+      subject(:account_users){ @client.account_users }
+      it{ account_users.should be_an Array }
+      it{ account_users.first.should be_a Surveygizmo::AccountUser }
+      it{ account_users.first.id.should eq 183437 }
+    end
   end
 
   describe "#account_user" do
@@ -26,6 +32,16 @@ describe Surveygizmo::API do
       @client.account_user(183437)
       a_get("/v2/accountuser/183437").
         should have_been_made
+    end
+    describe "AccountUser Object" do
+      subject(:account_user){ @client.account_user(183437) }
+      it{ account_user.should be_a Surveygizmo::AccountUser }
+      it{ account_user.id.should eq 183437 }
+      it{ account_user._type.should eq "AccountUser" }
+      it{ account_user.username.should eq "Jon" }
+      it{ account_user.email.should eq "jon@somewhere.com" }
+      it{ account_user.status.should eq "Active" }
+      it{ account_user.last_login.should eq Time.parse("2012-07-05 18:24:02") }
     end
   end
 
@@ -51,6 +67,22 @@ describe Surveygizmo::API do
         ).
         should have_been_made
     end
+    describe "AccountUser Object" do
+      subject(:account_user){ 
+        @client.create_account_user({
+          :email => "jamie@somewhere.com", 
+          :username => "Jamie", 
+          :password => "hamsterdance"
+        }) 
+      }
+      it{ account_user.should be_a Surveygizmo::AccountUser }
+      it{ account_user.id.should eq 183438 }
+      it{ account_user._type.should eq "AccountUser" }
+      it{ account_user.username.should eq "Jamie" }
+      it{ account_user.email.should eq "jamie@somewhere.com" }
+      it{ account_user.status.should eq "Active" }
+      it{ account_user.last_login.should eq Time.parse("2012-07-05 18:24:02") }
+    end
   end
 
   describe "#delete_account_user" do
@@ -64,6 +96,16 @@ describe Surveygizmo::API do
       a_post("/v2/accountuser/183437").
         with(:query => {:_method => "DELETE"}).
         should have_been_made
+    end
+    describe "AccountUser Object" do
+      subject(:account_user){ @client.delete_account_user(183437) }
+      it{ account_user.should be_a Surveygizmo::AccountUser }
+      it{ account_user.id.should eq 183438 }
+      it{ account_user._type.should eq "AccountUser" }
+      it{ account_user.username.should eq "Jamie" }
+      it{ account_user.email.should eq "jamie@somewhere.com" }
+      it{ account_user.status.should eq "Active" }
+      it{ account_user.last_login.should eq Time.parse("2012-07-05 18:24:02") }
     end
   end
 
@@ -79,5 +121,15 @@ describe Surveygizmo::API do
         with(:query => {:_method => "POST"}).
         should have_been_made
     end    
+    describe "AccountUser Object" do
+      subject(:account_user){ @client.update_account_user(183437, {:email => "jon@gmail.com"}) }
+      it{ account_user.should be_a Surveygizmo::AccountUser }
+      it{ account_user.id.should eq 183437 }
+      it{ account_user._type.should eq "AccountUser" }
+      it{ account_user.username.should eq "Jon" }
+      it{ account_user.email.should eq "jon@gmail.com" }
+      it{ account_user.status.should eq "Active" }
+      it{ account_user.last_login.should eq Time.parse("2012-07-05 18:24:02") }
+    end
   end
 end
