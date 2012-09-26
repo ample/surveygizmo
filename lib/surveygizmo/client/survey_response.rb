@@ -9,7 +9,7 @@ module Surveygizmo
       # List all survey responses for a given survey
       # @param survey_id [Integer, String] Specify the survey to the responses to get
       def survey_responses(survey_id, options = {})
-        get("survey/#{survey_id}/surveyresponse", options)
+        collection_from_response(Surveygizmo::SurveyResponse, :get, "survey/#{survey_id}/surveyresponse", options)
       end
       
       # Returns survey response details for a given id
