@@ -50,6 +50,37 @@ describe Surveygizmo::API do
           should have_been_made
       end
     end
+    context "with 0 results_per_page" do
+      before do
+        stub_get("/v2/survey/1018301/surveyresponse").
+          with(:query => {
+            :resultsperpage => 0
+          }).
+          to_return(
+            :body => fixture("survey_responses_with_0_results_per_page.json"), 
+            :headers => {:content_type => "application/json; charset=utf-8"}
+          )
+      end
+
+      it "requests the correct resource" do
+        @client.survey_responses(1018301, :resultsperpage => 0)        
+        a_get("/v2/survey/1018301/surveyresponse").
+          with(:query => {
+            :resultsperpage => 0
+          }).
+          should have_been_made
+      end
+
+      context "SurveyResponse collection" do
+        subject(:survey_responses){ @client.survey_responses(1018301, :resultsperpage => 0) }
+        it{ survey_responses.should be_an Array }
+        it{ survey_responses.size.should eq 0 }
+        it{ survey_responses.total_count.should eq 4406 }
+        it{ survey_responses.page.should eq 1 }
+        it{ survey_responses.total_pages.should eq 0 }
+        it{ survey_responses.results_per_page.should eq 0 }
+      end
+    end
   end
 
   describe "#survey_response" do
