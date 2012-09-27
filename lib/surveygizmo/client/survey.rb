@@ -8,13 +8,19 @@ module Surveygizmo
     module Survey
       
       # List all surveys, optionally filtered
-      # @param options [Hash] Option(s) used to refine search
+      # @param options [Hash] A customizable set of options.
+      # @option options [Hash] :filter Option(s) used to refine search
+      # @option options [Integer, String] :resultsperpage Specify the number of results to return
+      # @option options [Integer, String] :page Specify the result page number
       def surveys(options = {})
         collection_from_response(Surveygizmo::Survey, :get, "survey", options)
       end
       
       # List all polls, optionally filtered
-      # @param options [Hash] Option(s) used to refine search
+      # @param options [Hash] A customizable set of options.
+      # @option options [Hash] :filter Option(s) used to refine search
+      # @option options [Integer, String] :resultsperpage Specify the number of results to return
+      # @option options [Integer, String] :page Specify the result page number
       def polls(options = {})
         options[:filter] ||= []
         options[:filter] <<  { :field => 'subtype', :operator => '=', :value => 'Poll' }

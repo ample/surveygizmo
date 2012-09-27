@@ -7,6 +7,7 @@ module Surveygizmo
     module Account
       
       # Get details of authorized account
+      # @param options [Hash] A customizable set of options.
       def account(options={})
         object_from_response(Surveygizmo::Account, :get, "account", options)
       end
