@@ -5,7 +5,7 @@ module Surveygizmo
   class AccountUser < Surveygizmo::Identity
     attr_reader :_type, :username, :email, :status
 
-    # Time when the object was modified on Surveygizmo
+    # Time when the AccountUser last logged in
     #
     # @return [Time]
     def last_login

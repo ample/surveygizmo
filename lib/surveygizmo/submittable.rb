@@ -3,7 +3,7 @@ require 'time'
 module Surveygizmo
   module Submittable
 
-    # Time when the object was modified on Surveygizmo
+    # Time when the object was submitted on Surveygizmo
     #
     # @return [Time]
     def date_submitted

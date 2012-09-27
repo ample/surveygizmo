@@ -20,6 +20,7 @@ module Surveygizmo
       end
     end
 
+    # Convenience method to allow configuration options to be set in a block
     def configure
       yield self
     end

@@ -7,6 +7,7 @@ module Surveygizmo
       request(:get, path, options)
     end
 
+    # Perform an HTTP POST request
     def post(path, options={}, temp_api_endpoint=nil)
       request(:post, path, options, temp_api_endpoint)
     end
