@@ -41,7 +41,7 @@ h2. Accessing meta data of the requests
 You can access the <code>result_ok?</code>, <code>total_count</code>, <code>page</code>, <code>total_pages</code> and <code>results_per_page</code> metadata. 
 
 bc. # Count the survey responses, but don't fetch them.
-Surveygizmo.survey_questions(survey_id, resultsperpage: 0).total_count 
+Surveygizmo.survey_responses(survey_id, resultsperpage: 0).total_count 
 
 h2. To Do List
 
