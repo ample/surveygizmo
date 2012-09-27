@@ -1,22 +1,23 @@
 require 'helper'
 
 describe Surveygizmo::API do
-  before do
-    @client = Surveygizmo::Client.new
-  end
+  let(:client){ Surveygizmo::Client.new }
 
   describe "#survey_responses" do
     before do
      stub_get("/v2/survey/1018301/surveyresponse").
        to_return(:body => fixture("survey_responses.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:survey_responses){ client.survey_responses(1018301) }
+
     it "requests the correct resource" do
-      @client.survey_responses(1018301)
+      survey_responses
       a_get("/v2/survey/1018301/surveyresponse").
         should have_been_made
     end
-    context "SurveyResponse collection" do
-      subject(:survey_responses){ @client.survey_responses(1018301) }
+
+    describe "SurveyResponse collection" do
       it{ survey_responses.should be_an Array }
       it{ survey_responses.first.should be_a Surveygizmo::SurveyResponse }
       it{ survey_responses.total_count.should eq 42 }
@@ -24,8 +25,9 @@ describe Surveygizmo::API do
       it{ survey_responses.total_pages.should eq 2 }
       it{ survey_responses.results_per_page.should eq 21 }
     end
+
     context "with an authenticated filter query" do
-      subject { Surveygizmo::Client.new(:username => "maarten@moretea.nl", :password => "keyboardcat") }
+      subject(:auth_client){ Surveygizmo::Client.new(:username => "maarten@moretea.nl", :password => "keyboardcat") }
       let(:survey_id) { 42 }
       let(:response_url) { "/v2/survey/#{survey_id}/surveyresponse" }
       let(:query) {
@@ -44,7 +46,7 @@ describe Surveygizmo::API do
       end
 
       it "requests the correct resource" do
-        subject.survey_responses(survey_id, filter: { field: "datesubmitted", operator: ">=", value: "2012-01-01" })
+        auth_client.survey_responses(survey_id, filter: { field: "datesubmitted", operator: ">=", value: "2012-01-01" })
         a_get("/v2/survey/#{survey_id}/surveyresponse").
           with(:query => query).
           should have_been_made
@@ -62,8 +64,10 @@ describe Surveygizmo::API do
           )
       end
 
+      subject(:survey_responses){ client.survey_responses(1018301, :resultsperpage => 0) }
+
       it "requests the correct resource" do
-        @client.survey_responses(1018301, :resultsperpage => 0)        
+        survey_responses
         a_get("/v2/survey/1018301/surveyresponse").
           with(:query => {
             :resultsperpage => 0
@@ -71,8 +75,7 @@ describe Surveygizmo::API do
           should have_been_made
       end
 
-      context "SurveyResponse collection" do
-        subject(:survey_responses){ @client.survey_responses(1018301, :resultsperpage => 0) }
+      describe "SurveyResponse collection" do
         it{ survey_responses.should be_an Array }
         it{ survey_responses.size.should eq 0 }
         it{ survey_responses.total_count.should eq 4406 }
@@ -88,13 +91,16 @@ describe Surveygizmo::API do
      stub_get("/v2/survey/1018301/surveyresponse/1").
        to_return(:body => fixture("survey_response.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:survey_response){ client.survey_response(1018301, 1) }
+
     it "requests the correct resource" do
-      @client.survey_response(1018301, 1)
+      survey_response
       a_get("/v2/survey/1018301/surveyresponse/1").
         should have_been_made
     end
+
     context "SurveyResponse Object" do
-      subject(:survey_response){ @client.survey_response(1018301, 1) }
       it{ survey_response.should be_a Surveygizmo::SurveyResponse }
       it{ survey_response.id.should eq 1 }
       it{ survey_response.contact_id.should eq "" }

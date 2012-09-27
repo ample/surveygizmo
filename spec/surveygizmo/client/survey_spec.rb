@@ -1,24 +1,25 @@
 require 'helper'
 
 describe Surveygizmo::API do
-  before do
-    @client = Surveygizmo::Client.new
-  end
+  let(:client){ Surveygizmo::Client.new }
 
   describe "#surveys" do
     before do
      stub_get("/v2/survey").
        to_return(:body => fixture("surveys.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:surveys){ client.surveys }
+
     it "requests the correct resource" do
-      @client.surveys
+      surveys
       a_get("/v2/survey").
         should have_been_made
     end
-    it "returns an Array of Survey" do
-      surveys = @client.surveys
-      surveys.should be_an Array
-      surveys.first.should be_a Surveygizmo::Survey
+
+    describe "Survey Collection" do
+      it{ surveys.should be_an Array }
+      it{ surveys.first.should be_a Surveygizmo::Survey }
     end
   end
 
@@ -27,13 +28,17 @@ describe Surveygizmo::API do
      stub_get("/v2/survey?filter%5Bfield%5D%5B0%5D=subtype&filter%5Boperator%5D%5B0%5D==&filter%5Bvalue%5D%5B0%5D=Poll").
        to_return(:body => fixture("polls.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:polls){ client.polls }
+
     it "requests the correct resource" do
-      @client.polls
+      polls
       a_get("/v2/survey?filter%5Bfield%5D%5B0%5D=subtype&filter%5Boperator%5D%5B0%5D==&filter%5Bvalue%5D%5B0%5D=Poll").
         should have_been_made
     end
+
     it "only returns surveys with a subtype of poll" do
-      @client.polls.each { |p| p._subtype.should == 'Poll' }
+      polls.each { |p| p._subtype.should == 'Poll' }
     end
   end
 
@@ -43,14 +48,17 @@ describe Surveygizmo::API do
        with(:query => {:metaonly=>"false"}).
        to_return(:body => fixture("survey.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:survey){ client.survey(1018301) }
+
     it "requests the correct resource" do
-      @client.survey(1018301)
+      survey
       a_get("/v2/survey/1018301").
         with(:query => {:metaonly=>"false"}).
         should have_been_made
     end
-    context "Survey Object" do
-      subject(:survey){ @client.survey(1018301) }
+
+    describe "Survey Object" do      
       it{ survey.should be_a Surveygizmo::Survey }
     end
   end

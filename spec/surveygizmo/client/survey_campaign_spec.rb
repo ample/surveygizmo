@@ -1,29 +1,29 @@
 require 'helper'
 
 describe Surveygizmo::API do
-  before do
-    @client = Surveygizmo::Client.new
-  end
+  let(:client){ Surveygizmo::Client.new }
 
   describe "#survey_campaigns" do
     before do
      stub_get("/v2/survey/1018301/surveycampaign").
        to_return(:body => fixture("survey_campaigns.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:survey_campaigns){ client.survey_campaigns(1018301) }
+
     it "requests the correct resource" do
-      @client.survey_campaigns(1018301)
+      survey_campaigns
       a_get("/v2/survey/1018301/surveycampaign").
         should have_been_made
     end
-    it "returns an Array of SurveyCampaign" do
-      survey_campaigns = @client.survey_campaigns(1018301)
-      survey_campaigns.should be_an Array
-      survey_campaigns.first.should be_a Surveygizmo::SurveyCampaign
-      survey_campaigns.first.id.should eq 673550
-      survey_campaigns.page.should eq 1
-      survey_campaigns.total_count.should eq 2
-      survey_campaigns.total_pages.should eq 1
-      survey_campaigns.results_per_page.should eq 50
+    describe "SurveyCampaign Collection" do
+      it{ survey_campaigns.should be_an Array }
+      it{ survey_campaigns.first.should be_a Surveygizmo::SurveyCampaign }
+      it{ survey_campaigns.first.id.should eq 673550 }
+      it{ survey_campaigns.page.should eq 1 }
+      it{ survey_campaigns.total_count.should eq 2 }
+      it{ survey_campaigns.total_pages.should eq 1 }
+      it{ survey_campaigns.results_per_page.should eq 50 }
     end
   end
 
@@ -32,13 +32,16 @@ describe Surveygizmo::API do
      stub_get("/v2/survey/1018301/surveycampaign/673550").
        to_return(:body => fixture("survey_campaign.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:survey_campaign){ client.survey_campaign(1018301, 673550) }
+
     it "requests the correct resource" do
-      @client.survey_campaign(1018301, 673550)
+      survey_campaign
       a_get("/v2/survey/1018301/surveycampaign/673550").
         should have_been_made
     end
-    context "SurveyCampaign Object" do
-      subject(:survey_campaign){ @client.survey_campaign(1018301, 673550) }
+
+    describe "SurveyCampaign Object" do
       it{ survey_campaign.should be_a Surveygizmo::SurveyCampaign }
       it{ survey_campaign.id.should eq 673550 }
       it{ survey_campaign._type.should eq "SurveyCampaign" }

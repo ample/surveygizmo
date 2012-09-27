@@ -1,22 +1,22 @@
 require 'helper'
 
 describe Surveygizmo::API do
-  before do
-    @client = Surveygizmo::Client.new
-  end
+  let(:client){ Surveygizmo::Client.new }
+  subject(:contacts){ client.contacts(1018301, 673550) }
 
   describe "#contacts" do
     before do
      stub_get("/v2/survey/1018301/surveycampaign/673550/contact").
        to_return(:body => fixture("contacts.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
     it "requests the correct resource" do
-      @client.contacts(1018301, 673550)
+      contacts
       a_get("/v2/survey/1018301/surveycampaign/673550/contact").
         should have_been_made
     end
+
     describe "Contact Collection" do
-      subject(:contacts){ @client.contacts(1018301, 673550) }
       it{ contacts.should be_an Array }
       it{ contacts.first.should be_a Surveygizmo::Contact }
       it{ contacts.first.id.should eq 1 }
@@ -28,13 +28,16 @@ describe Surveygizmo::API do
      stub_get("/v2/survey/1018301/surveycampaign/673550/contact/1").
        to_return(:body => fixture("contact.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
+
+    subject(:contact){ client.contact(1018301, 673550, 1) }
+
     it "requests the correct resource" do
-      @client.contact(1018301, 673550, 1)
+      contact
       a_get("/v2/survey/1018301/surveycampaign/673550/contact/1").
         should have_been_made
     end
+
     describe "Contact object" do
-      subject(:contact){ @client.contact(1018301, 673550, 1) }
       it{ contact.should be_a Surveygizmo::Contact }
       it{ contact.id.should eq 1 }
       it{ contact.semailaddress.should eq "allan@gmail.com" }
