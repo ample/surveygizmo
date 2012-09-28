@@ -1,6 +1,28 @@
 require 'helper'
 
 describe Surveygizmo::Error do
+  describe "Unknown Error" do
+    let(:client){ Surveygizmo::Client.new(:username => "steven@somewhere.org", :password => "wrong_password")}
+
+    before do
+     authorization = client.send(:auth_query_hash)
+     stub_get("/v2/account").
+       with(:query => authorization).
+       to_return(:body => fixture("error_unknown.json"), :headers => {:content_type => "application/json; charset=utf-8"})
+    end
+
+    subject(:request){ client.account }
+
+    it{ expect { request }.to raise_error(Surveygizmo::Error) }
+    
+    it "returns the request error code of 9999" do
+      expect { request }.to raise_error(Surveygizmo::Error) { |e| e.code.should == 9999 } 
+    end
+    it "returns the request error message of 'Error Message'" do
+      expect { request }.to raise_error(Surveygizmo::Error) { |e| e.message.should == "Failed Response" }
+    end
+
+  end
   describe "Error Code: 103 Service Currently Unavailable" do
     subject { Surveygizmo::Client.new(:username => "maarten@moretea.nl", :password => "keyboardcat") }
     let(:survey_id) { 42 }
