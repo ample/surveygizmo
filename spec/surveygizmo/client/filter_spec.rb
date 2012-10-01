@@ -1,29 +1,27 @@
 require 'helper'
 
 describe Surveygizmo::API do
-  before do
-    @client = Surveygizmo::Client.new
-  end
+  let(:client) { Surveygizmo::Client.new }
 
   describe "#formatted_filters" do
     context "no filters" do
       context "empty hash" do
         let(:input) { Hash.new }
         it "returns a empty hash" do
-          @client.formatted_filters(input).should == {}
+          client.formatted_filters(input).should == {}
         end
       end
 
       context "nil" do
         let(:input) { nil }
         it "returns a empty hash" do
-          @client.formatted_filters(input).should == {}
+          client.formatted_filters(input).should == {}
         end
       end
     end
     context "one filter" do
       it "format filters for the request querystring" do
-        filters = @client.formatted_filters({
+        filters = client.formatted_filters({
           "field" => "status",
           "operator" => "=",
           "value" => "Active"
@@ -38,7 +36,7 @@ describe Surveygizmo::API do
 
     context "more than one filters" do
       it "format filters for the request querystring" do
-        filters = @client.formatted_filters(
+        filters = client.formatted_filters(
           {
             "field" => "datesubmitted",
             "operator" => "<=",
