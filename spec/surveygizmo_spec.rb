@@ -1,6 +1,6 @@
 require 'helper'
 
-describe Surveygizmo do 
+describe Surveygizmo do
   after do
     Surveygizmo.reset!
   end
@@ -21,7 +21,7 @@ describe Surveygizmo do
     it "returns the same results as a client" do
       Surveygizmo.account.should eq Surveygizmo::Client.new.account
     end
-  end  
+  end
 
   describe '.respond_to?' do
     it "delegates to Surveygizmo::Client" do

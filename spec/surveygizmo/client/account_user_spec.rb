@@ -40,8 +40,8 @@ describe Surveygizmo::API do
     end
     it "requests the correct resource" do
       @client.create_account_user({
-        :email => "jamie@somewhere.com", 
-        :username => "Jamie", 
+        :email => "jamie@somewhere.com",
+        :username => "Jamie",
         :password => "hamsterdance"
       })
       a_post("/v2/accountuser").
@@ -78,6 +78,6 @@ describe Surveygizmo::API do
       a_post("/v2/accountuser/183437").
         with(:query => {:_method => "POST"}).
         should have_been_made
-    end    
+    end
   end
 end

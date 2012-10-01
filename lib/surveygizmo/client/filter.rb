@@ -3,7 +3,7 @@ module Surveygizmo
     # Defines methods related to filtering search results
     # @see http://developer.surveygizmo.com/resources/filtering-and-browsing-results/
     module Filter
-      
+
       # Format filters for the request querystring
       # TODO: Not yet recursive
       # @param filters [Hash] Filter(s) used to refine search
@@ -19,7 +19,7 @@ module Surveygizmo
           end
         end
       end
-      
+
     end
   end
 end

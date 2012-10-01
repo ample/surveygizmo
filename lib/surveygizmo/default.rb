@@ -26,6 +26,6 @@ module Surveygizmo
         USER_AGENT
       end
     end
-    
+
   end
 end

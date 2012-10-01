@@ -4,7 +4,7 @@ require 'digest/md5'
 module Surveygizmo
   # @private
   module Connection
-    
+
     private
 
       def connection(temp_api_endpoint=nil)
