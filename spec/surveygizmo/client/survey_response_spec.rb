@@ -1,9 +1,7 @@
 require 'helper'
 
 describe Surveygizmo::API do
-  before do
-    @client = Surveygizmo::Client.new
-  end
+  let(:client) { Surveygizmo::Client.new }
 
   describe "#survey_responses" do
     before do
@@ -11,7 +9,7 @@ describe Surveygizmo::API do
        to_return(:body => fixture("survey_responses.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
     it "requests the correct resource" do
-      @client.survey_responses(1018301)
+      client.survey_responses(1018301)
       a_get("/v2/survey/1018301/surveyresponse").
         should have_been_made
     end
@@ -23,7 +21,7 @@ describe Surveygizmo::API do
        to_return(:body => fixture("survey_response.json"), :headers => {:content_type => "application/json; charset=utf-8"})
     end
     it "requests the correct resource" do
-      @client.survey_response(1018301, 1)
+      client.survey_response(1018301, 1)
       a_get("/v2/survey/1018301/surveyresponse/1").
         should have_been_made
     end
