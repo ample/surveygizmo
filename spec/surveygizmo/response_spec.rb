@@ -50,11 +50,11 @@ describe Surveygizmo::Response do
       response.results_per_page.should == 21
     end
   end
-  
+
   context "#success?" do
     it "indicates the status of the response" do
       response.success?.should == true
     end
   end
-  
+
 end
