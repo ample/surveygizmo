@@ -1,7 +1,10 @@
 module Surveygizmo
   class Collection < Array
+    PAGINATION_ATTRIBUTES = [:page, :total_pages, :total_count, :results_per_page]
+
     # Access Surveygizmo pagination variables
-    attr_reader :total_count, :page, :total_pages, :results_per_page
+    attr_reader *PAGINATION_ATTRIBUTES
+
 
     # Initializes a new Collection object
     #
@@ -28,12 +31,7 @@ module Surveygizmo
 
     # @return [Hash]
     def pagination_attributes
-      [
-        :total_count,
-        :page,
-        :total_pages,
-        :results_per_page
-      ]
+      PAGINATION_ATTRIBUTES
     end
 
     # @return [Array]
