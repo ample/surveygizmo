@@ -19,7 +19,7 @@ module Surveygizmo
 
       super(params[:data])
 
-      map_klass(klass)
+      decorate_with_klass(klass)
     end
 
     # Convience method to initialize a Collection
@@ -35,7 +35,7 @@ module Surveygizmo
     end
 
     # @return [Array]
-    def map_klass(klass)
+    def decorate_with_klass(klass)
       self.map! do |element|
         klass.fetch_or_new(element)
       end      
