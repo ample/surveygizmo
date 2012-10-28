@@ -1,5 +1,7 @@
 require 'surveygizmo/configurable'
 require 'faraday_middleware'
+require 'surveygizmo/response'
+require 'surveygizmo/response/raise_error'
 
 module Surveygizmo
   module Default
@@ -17,6 +19,8 @@ module Surveygizmo
         builder.use Faraday::Request::UrlEncoded
         # Converts parsed response bodies to a Hashie::Mash
         builder.use Faraday::Response::Mashify
+        # Handle server responses using Surveygizmo::Error
+        builder.use Surveygizmo::Response::RaiseError, Surveygizmo::Error
         # Parse JSON response bodies using MultiJson
         builder.use Faraday::Response::ParseJson
         # Set Faraday's HTTP adapter

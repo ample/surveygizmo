@@ -33,12 +33,6 @@ module Surveygizmo
       end
 
       response = Response.new(response)
-
-      if response.failed?
-        raise Error.new(response.error_code, response.error_message)
-      else
-        response
-      end
     end
 
     def convert_hash_filter_params! options

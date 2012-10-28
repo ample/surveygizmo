@@ -12,14 +12,6 @@ module Surveygizmo
       @data.send(name, *arguments, &block)
     end
 
-    def error_code
-      @response.body.code.to_i
-    end
-
-    def error_message
-      @response.body.message
-    end
-
     # Build meta data access methods.
     [:result_ok, :total_count, :page, :total_pages, :results_per_page].each do |field|
       define_method field do
@@ -29,10 +21,6 @@ module Surveygizmo
 
     def success?
       @response.body.result_ok
-    end
-
-    def failed?
-      !success?
     end
 
     def ==(other)
