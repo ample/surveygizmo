@@ -13,7 +13,7 @@ module Surveygizmo
     end
 
     # Build meta data access methods.
-    [:result_ok, :total_count, :page, :total_pages, :results_per_page].each do |field|
+    [:total_count, :page, :total_pages, :results_per_page].each do |field|
       define_method field do
         @response.body.send(field).to_i
       end
