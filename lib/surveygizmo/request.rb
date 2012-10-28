@@ -32,7 +32,7 @@ module Surveygizmo
         end
       end
 
-      response = Response.new(response.body)
+      response.body
     end
 
     def convert_hash_filter_params! options
