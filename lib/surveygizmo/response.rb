@@ -5,7 +5,7 @@ module Surveygizmo
     attr_reader :data
 
     def initialize(response)
-      @response = parse(response)
+      @response = mashify(response)
       @data     = @response.data
     end
 
@@ -33,12 +33,12 @@ module Surveygizmo
       Hashie::Mash
     end
 
-    def parse(body)
+    def mashify(body)
       case body
       when Hash
         mash_class.new(body)
       when Array
-        body.map { |item| parse(item) }
+        body.map { |item| mashify(item) }
       else
         body
       end
