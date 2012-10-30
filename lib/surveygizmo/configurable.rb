@@ -3,7 +3,7 @@ require 'surveygizmo/default'
 module Surveygizmo
   module Configurable
     attr_writer :username, :password
-    attr_accessor :endpoint, :user_agent
+    attr_accessor :endpoint, :user_agent, :connection_options, :middleware
 
     class << self
       def keys
@@ -11,7 +11,9 @@ module Surveygizmo
           :username,
           :password,
           :endpoint,
-          :user_agent
+          :user_agent,
+          :connection_options,
+          :middleware
         ]
       end
     end

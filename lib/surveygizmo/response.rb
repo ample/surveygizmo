@@ -1,42 +1,48 @@
+require 'hashie'
 module Surveygizmo
   class Response
     attr_reader :response
     attr_reader :data
 
+    class << self
+      attr_accessor :mash_class
+    end
+
+    self.mash_class = Hashie::Mash
+
     def initialize(response)
-      @response = response
-      @data     = response.body.data
+      @response = mashify(response)
+      @data     = @response.data
     end
 
     def method_missing(name, *arguments, &block)
       @data.send(name, *arguments, &block)
     end
 
-    def error_code
-      @response.body.code.to_i
-    end
-
-    def error_message
-      @response.body.message
-    end
-
     # Build meta data access methods.
-    [:result_ok, :total_count, :page, :total_pages, :results_per_page].each do |field|
+    [:total_count, :page, :total_pages, :results_per_page].each do |field|
       define_method field do
-        @response.body.send(field).to_i
+        @response.send(field).to_i
       end
     end
 
     def success?
-      @response.body.result_ok
-    end
-
-    def failed?
-      !success?
+      @response.result_ok
     end
 
     def ==(other)
       (self.data == other.data) && (self.result == other.result)
+    end
+
+    def mashify(body)
+      case body
+      when Hash
+        self.class.mash_class.new(body)
+      when Array
+        body.map { |item| mashify(item) }
+      else
+        body
+      end
     end
   end
 end
