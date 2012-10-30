@@ -4,6 +4,12 @@ module Surveygizmo
     attr_reader :response
     attr_reader :data
 
+    class << self
+      attr_accessor :mash_class
+    end
+
+    self.mash_class = Hashie::Mash
+
     def initialize(response)
       @response = mashify(response)
       @data     = @response.data
@@ -28,15 +34,10 @@ module Surveygizmo
       (self.data == other.data) && (self.result == other.result)
     end
 
-    private
-    def mash_class
-      Hashie::Mash
-    end
-
     def mashify(body)
       case body
       when Hash
-        mash_class.new(body)
+        self.class.mash_class.new(body)
       when Array
         body.map { |item| mashify(item) }
       else
