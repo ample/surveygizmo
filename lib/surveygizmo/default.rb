@@ -18,12 +18,16 @@ module Surveygizmo
       &Proc.new do |builder|
         # Convert request params to "www-form-urlencoded"
         builder.use Faraday::Request::UrlEncoded
+
         # Converts parsed response bodies to a Surveygizmo::Response
         builder.use Surveygizmo::Response::ParseSurveygizmoResponse
+
         # Handle server responses using Surveygizmo::Error
         builder.use Surveygizmo::Response::RaiseError, Surveygizmo::Error
+
         # Parse JSON response bodies using MultiJson
         builder.use Faraday::Response::ParseJson
+
         # Set Faraday's HTTP adapter
         builder.adapter(:net_http)
       end
