@@ -2,7 +2,7 @@ require 'faraday'
 require 'surveygizmo/error'
 
 module Surveygizmo
-  class Response::RaiseError < Faraday::Response::Middleware
+  class Response::RaiseErrorOnFailedRequest < Faraday::Response::Middleware
 
     def on_complete(env)
       if env[:body] && ! env[:body]["result_ok"]

@@ -1,7 +1,7 @@
 require 'surveygizmo/configurable'
 require 'faraday_middleware'
 require 'surveygizmo/response'
-require 'surveygizmo/response/raise_error'
+require 'surveygizmo/response/raise_error_on_failed_request'
 require 'surveygizmo/response/parse_surveygizmo_response'
 
 module Surveygizmo
@@ -22,8 +22,8 @@ module Surveygizmo
         # Converts parsed response bodies to a Surveygizmo::Response
         builder.use Surveygizmo::Response::ParseSurveygizmoResponse
 
-        # Handle server responses using Surveygizmo::Error
-        builder.use Surveygizmo::Response::RaiseError, Surveygizmo::Error
+        # Raise Errors on Failed Requests from Surveygizmo with Surveygizmo::Error
+        builder.use Surveygizmo::Response::RaiseErrorOnFailedRequest, Surveygizmo::Error
 
         # Parse JSON response bodies using MultiJson
         builder.use Faraday::Response::ParseJson
