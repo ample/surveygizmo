@@ -13,6 +13,7 @@ module Surveygizmo
     require 'surveygizmo/client/filter'
     require 'surveygizmo/client/survey'
     require 'surveygizmo/client/survey_campaign'
+    require 'surveygizmo/client/survey_campaign_email_message'
     require 'surveygizmo/client/survey_option'
     require 'surveygizmo/client/survey_page'
     require 'surveygizmo/client/survey_question'
@@ -27,6 +28,7 @@ module Surveygizmo
     include Surveygizmo::Client::Filter
     include Surveygizmo::Client::Survey
     include Surveygizmo::Client::SurveyCampaign
+    include Surveygizmo::Client::SurveyCampaignEmailMessage
     include Surveygizmo::Client::SurveyOption
     include Surveygizmo::Client::SurveyPage
     include Surveygizmo::Client::SurveyQuestion
