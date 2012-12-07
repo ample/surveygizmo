@@ -1,4 +1,3 @@
-
 module Surveygizmo
   class Client
     # Defines methods related to a SurveyGizmo survey question
@@ -12,10 +11,10 @@ module Surveygizmo
       end
 
       # Returns survey question details for a given id
-      # @param survey_id [Integer, String] Specify the survey to the question to get
-      # @param id [Integer, String] Specify the question to get
-      def survey_question(survey_id, id)
-        get("survey/#{survey_id}/surveyquestion/#{id}")
+      # @param survey_id [Integer, String] Specify the survey for the question to get
+      # @param question_id [Integer, String] Specify the question to get
+      def survey_question(survey_id, question_id, options={})
+        get("survey/#{survey_id}/surveyquestion/#{question_id}", options)
       end
 
       # TODO: Create, Update, Delete

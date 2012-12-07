@@ -1,5 +1,6 @@
 module Surveygizmo
   class Client
+
     # Defines methods related to a SurveyGizmo survey statistic
     # @see http://developer.surveygizmo.com/rest-api-documentation/objects/surveystatistic/
     module SurveyStatistic
